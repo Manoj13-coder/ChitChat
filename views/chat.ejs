@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ChitChat</title>
+        <link rel="stylesheet" type="text/css" href="chat.css">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Devanagari&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand bg-dark">
+            <a class="brand text-light text-decoration-none" href="#">ChitChat</a>
+            <form method="GET" class="ml-auto" action="/delete">
+                <input name="access" id="access" value="Trust" style="display:none;"/>
+                <button id="logout" type="sumbit">Logout</button>
+            </form>
+        </nav>
+        <main id="contain">
+            <div id="ChatApp">
+                <nav id="nav">
+                    <div>
+                        <div>
+                            <img src="https://png.pngitem.com/pimgs/s/512-5125598_computer-icons-scalable-vector-graphics-user-profile-avatar.png" class="rounded-circle ml-5 mt-1" width="50" height="50">
+                            <a href="" data-toggle="modal" data-target="#myModal2" id="nameMain" class="text-decoration-none ml-2"><%= user %></a>
+                        </div>
+                        <div class="modal" id="myModal2">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                          
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                  <h4 class="modal-title">Change User Name</h4>
+                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                          
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <form method="POST" class="text-center" action="/change">
+                                        <input class="form-control mx-auto" type="text" name="username" value="<%= user %>"/>
+                                        <button class="btn btn-outline-dark mt-3">Change</button>
+                                    </form>
+                                </div>
+                          
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                </div>
+                          
+                              </div>
+                            </div>
+                        </div>
+                </nav>
+                <section id="Read">
+                    <div class="text-center">
+                        <small id="Info"><b>Here is a random room name suggestion for you please join it and share this name with your friends so that they can also join.</b></small><br/>
+                        <i id="Random">Room Name Suggestion<br/><i id="CurrentChange"><%= room %></i></i>
+                        <i style="display:none;" id="Instant">Current Room : </i><br/><i id="Current_Room"></i></i><br/>
+                        <input placeholder="Change or join room" style="border:none;outline:none;" id="KEY">
+                        <button onclick="change();" style="border:none;outline:none;">Join</button>
+                    </div>
+                </section>
+                <nav id="footer">
+                    <textarea id="messagewritten" type="text" class="ml-5" placeholder="Write Something" required style="min-height: 50px;" onkeypress="check(event);"></textarea>&nbsp;&nbsp;&nbsp;
+                    <button class="fa fa-paper-plane" onclick="func();"></button>
+                </nav>
+            </div>
+        </main>
+        <script src="/socket.io/socket.io.js"></script>
+        <script type="text/javascript" src="client.js"></script>
+    </body>
+</html>
